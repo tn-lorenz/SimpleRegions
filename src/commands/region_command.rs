@@ -6,6 +6,9 @@ use async_trait::async_trait;
 
 use crate::util::task_util::start_loop;
 
+use crate::commands::MSG_NOT_PLAYER;
+use crate::run_task_timer;
+use pumpkin::command::args::simple::SimpleArgConsumer;
 use pumpkin::command::dispatcher::CommandError::CommandFailed;
 use pumpkin::{
     command::{
@@ -20,14 +23,10 @@ use pumpkin::{
     entity::player::Player,
     server::Server,
 };
-use pumpkin::command::args::simple::SimpleArgConsumer;
 use pumpkin_util::text::TextComponent;
-use crate::commands::MSG_NOT_PLAYER;
-use crate::run_task_timer;
 
 const NAMES: [&str; 2] = ["region", "rg"];
-const DESCRIPTION: &str =
-    "The main region command.";
+const DESCRIPTION: &str = "The main region command.";
 const ARG_NAME: &str = "arg";
 
 struct RegionExcecutor;

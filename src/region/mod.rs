@@ -1,15 +1,16 @@
 pub mod tag;
 
-use std::sync::Arc;
 use dashmap::DashSet;
 use once_cell::sync::Lazy;
 use pumpkin::world::World;
 use pumpkin_util::math::position::BlockPos;
-use pumpkin_util::math::vector3::Vector3;
+use std::sync::Arc;
+//use pumpkin_util::math::vector3::Vector3;
 use crate::region::tag::Tag;
 
-/*pub static REGIONS: Lazy<DashSet<Region>> = Lazy::new(DashSet::new);
+pub static REGIONS: Lazy<DashSet<Region>> = Lazy::new(DashSet::new);
 
+// TODO: carrying a world sucks ass
 #[derive(Clone)]
 pub struct Region {
     name: String,
@@ -21,7 +22,14 @@ pub struct Region {
 }
 
 impl Region {
-    pub(crate) fn new(name: String, world: World, pos1: BlockPos, pos2: BlockPos, tags: Vec<Tag>, children: Vec<Region>) -> Self {
+    pub(crate) fn new(
+        name: String,
+        world: World,
+        pos1: BlockPos,
+        pos2: BlockPos,
+        tags: Vec<Tag>,
+        children: Vec<Region>,
+    ) -> Self {
         Self {
             name,
             world,
@@ -55,16 +63,14 @@ impl Region {
         &self.children
     }
 
-    pub fn is_within(&self, location: BlockPos) -> bool {
-
-    }
+    pub fn is_within(&self, location: BlockPos) -> bool {}
 }
 
 pub fn find_region(location: &BlockPos) -> Option<Arc<Region>> {
     for region in REGIONS.iter() {
-        if region.is_within(location) {
-            return Some(region.clone());
+        if region.is_within(*location) {
+            return Some(Arc::from(region.clone()));
         }
     }
     None
-}*/
+}

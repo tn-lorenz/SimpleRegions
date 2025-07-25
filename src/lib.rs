@@ -1,3 +1,4 @@
+use crate::listeners::player_move::PlayerMoveHandler;
 use once_cell::sync::Lazy;
 use pumpkin::plugin::{Context, EventPriority};
 use pumpkin_api_macros::{plugin_impl, plugin_method};
@@ -7,13 +8,12 @@ use pumpkin_util::{
 };
 use std::sync::Arc;
 use tokio::runtime::Runtime;
-use crate::listeners::player_move::PlayerMoveHandler;
 
 pub mod commands;
-pub mod listeners;
-mod util;
 mod events;
+pub mod listeners;
 mod region;
+mod util;
 
 const PLUGIN_NAME: &str = env!("CARGO_PKG_NAME");
 const REGION_PERMISSION_NODE: String = format!("{PLUGIN_NAME}:command.region");
